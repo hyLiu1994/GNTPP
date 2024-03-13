@@ -38,7 +38,7 @@ parser = argparse.ArgumentParser(prog="Attentive Diffusion Temporal Point Proces
 # Basic
 parser.add_argument('--log_dir', type=str, metavar='DIR', 
                     help='Directory where models and logs will be saved.', default='experiments/')
-parser.add_argument('--dataset_dir', type=str, metavar='DIR', default='./data/stackoverflow/',
+parser.add_argument('--dataset_dir', type=str, metavar='DIR', default='./data/mooc/',
                     choices=['./data/mooc/', './data/retweet/', './data/stackoverflow/', './data/synthetic_n5_c0.2/', './data/yelp/'],
                     help='Directory for dataset.')
 
@@ -72,7 +72,7 @@ parser.add_argument('--attention_heads', type=int, metavar='SIZE', default=4,
                     help='Attention heads for the attention history encoder, which should be set as a divisor of embed size.')          
 
 ###
-parser.add_argument('--gpu', type=int, metavar='DEVICE', default=6,
+parser.add_argument('--gpu', type=int, metavar='DEVICE', default=0,
                     help='Gpu to use for training.')
 parser.add_argument('--seed', type=int, metavar='SEED', default=42,
                     help='Random seed for training.')
