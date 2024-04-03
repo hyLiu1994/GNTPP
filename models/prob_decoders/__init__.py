@@ -7,6 +7,7 @@ from .score_modules import ScoreMatchDecoder
 from .vae_modules import VAEDecoder
 from .intensities import *
 from .deterministic import *
+from .bayesian_flow_network import BFNDecoder
 DECODER_DICT = {
     'CNF': CNFDecoder,
     'Diffusion': DiffusionDecoder,
@@ -20,7 +21,8 @@ DECODER_DICT = {
     'FNN': FNNIntegral,
     'THP': THPDecoder, 
     'SAHP': SAHPDecoder,
-    'Determ':RegHead
+    'Determ':RegHead,
+    'BFN': BFNDecoder,
 }
 
 def get_decoder(**args):

@@ -22,6 +22,7 @@ Run the following commands to train the model.
 ```bash
 #  Training the Model
 python tpp_train.py --dataset_dir ./data/{dataset}/ --hist_enc {encoder} --prob_dec {decoder}
+python tpp_train.py --dataset_dir ./data/mooc/ --hist_enc Attention --prob_dec Diffusion
 ```
 
 {dataset} can be replaced by `[mooc, retweet, stackoverflow, yelp, synthetic_n5_c0.2]`.

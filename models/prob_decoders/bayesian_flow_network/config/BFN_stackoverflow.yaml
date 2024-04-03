@@ -1,0 +1,38 @@
+meta:
+  neptune:
+  debug: False
+model:
+  net:
+    class_name: "TPPNet"
+    parameters:
+      input_size: 183
+      hidden_size: 512
+      output_size: 256
+  input_adapter:
+    class_name: "TPPInputAdapter"
+    parameters:
+      embed_size: 64
+  output_adapter:
+    class_name: "TPPOutputAdapter"
+    parameters:
+      input_height: 256
+      event_num: 23
+  bayesian_flow:
+    class_name: "TPPBayesianFlow"
+    parameters:
+      n_classes: 23
+      max_sqrt_beta: 3
+      discretize: False
+      min_variance: 1e-6
+  loss_type:
+    class_name: "TypeBayesianFlowLoss"
+    parameters: {}
+  loss_timeinterval:
+    class_name: "TimeIntervalBayesianFlowLoss"
+    parameters: {}
+  distribution_factory_type:
+    class_name: "CategoricalFactory"
+    parameters: {}
+  distribution_factory_timeinterval:
+    class_name: "DeltaFactory"
+    parameters: {}

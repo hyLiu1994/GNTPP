@@ -26,7 +26,7 @@ def SetSeed(seed):
     numpy.random.seed(seed)
 
 TIME_EMB = ['Trigo', 'Linear']
-PROB_DEC = ['CNF','Diffusion','GAN','ScoreMatch','VAE','LogNorm','Gompt','Gaussian','Weibull','FNN', 'THP', 'SAHP']
+PROB_DEC = ['CNF','Diffusion','GAN','ScoreMatch','VAE','LogNorm','Gompt','Gaussian','Weibull','FNN', 'THP', 'SAHP', 'BFN']
 
 # NOTE: The given THP and SAHP use different type-modeling methods (type-wise intensity modelling), while others model all the type in a single sequence.
 # So the final metric evaluation will be in a different protocol.
@@ -38,19 +38,19 @@ parser = argparse.ArgumentParser(prog="Attentive Diffusion Temporal Point Proces
 # Basic
 parser.add_argument('--log_dir', type=str, metavar='DIR', 
                     help='Directory where models and logs will be saved.', default='experiments/')
-parser.add_argument('--dataset_dir', type=str, metavar='DIR', default='./data/mooc/',
+parser.add_argument('--dataset_dir', type=str, metavar='DIR', default='./data/stackoverflow/',
                     choices=['./data/mooc/', './data/retweet/', './data/stackoverflow/', './data/synthetic_n5_c0.2/', './data/yelp/'],
                     help='Directory for dataset.')
 
 # Training
-parser.add_argument('--max_epoch', type=int, metavar='NUM', default=100,
+parser.add_argument('--max_epoch', type=int, metavar='NUM', default=2,
                     help='The maximum epoch number for training.')
-parser.add_argument('--lr', type=int, metavar='RATE', default=1e-3,
+parser.add_argument('--lr', type=int, metavar='RATE', default=1e-4,
                     help='The leanring rate for training.')
 parser.add_argument('--load_epoch', type=int, metavar='NUM', default=0,
                     help='Load the saved epoch number for continously training.')  
 
-parser.add_argument('--batch_size', type=int, metavar='SIZE', default=16,
+parser.add_argument('--batch_size', type=int, metavar='SIZE', default=32,
                     help='Batch size for training.')        
 parser.add_argument('--val_batch_size', type=int, metavar='SIZE', default=8,
                     help='Batch size for validation, which should be smaller than training batch size because some metric requires MCMC sampling.')
@@ -62,7 +62,7 @@ parser.add_argument('--time_emb', type=str, metavar='NAME', default='Trigo', cho
                     help='The time embedding which is used, choosen from {}.'.format(TIME_EMB))
 parser.add_argument('--hist_enc', type=str, metavar='NAME', default='Attention', choices=HIST_ENC,
                     help='The history encoder which is used, choosen from {}.'.format(HIST_ENC))
-parser.add_argument('--prob_dec', type=str, metavar='NAME', default='Diffusion', choices=PROB_DEC,
+parser.add_argument('--prob_dec', type=str, metavar='NAME', default='BFN', choices=PROB_DEC,
                     help='The probabilistic decoder which is used, choosen from {}.'.format(PROB_DEC))
 parser.add_argument('--embed_size', type=int, metavar='SIZE', default=32,
                     help='Hidden dimension for the model.')
